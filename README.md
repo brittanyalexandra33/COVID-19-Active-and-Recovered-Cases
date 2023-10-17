@@ -15,5 +15,11 @@ This interactive Shiny application provides a visualization of COVID-19 active a
 ### Contributing
 I welcome contributions! If you'd like to enhance the functionalities or improve the visualization, please fork the repository and create a pull request.
 
+### Data Source
+https://github.com/owid/covid-19-data/tree/master/public/data
+The complete COVID-19 dataset is a collection of the COVID-19 data maintained by Our World in Data. It is updated daily throughout the duration of the COVID-19 pandemic (more information on our updating process and schedule via the link). 
+
 ### Contact
 For any queries or feedback, please reach out to [brittanyalexandra33@gmail.com].
+
+
