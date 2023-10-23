@@ -1,12 +1,13 @@
 library(shiny)
 library(shinythemes)
 library(tidyverse)
+
 # Load the data
 fn <- "https://covid.ourworldindata.org/data/owid-covid-data.csv"
 data <- read.csv(file=fn)
 
 ui <- fluidPage(
-  theme = shinytheme("sandstone"),
+  theme = shinytheme("flatly"),
   titlePanel("COVID-19 Active and Recovered Cases"),
   
   sidebarLayout(
@@ -14,10 +15,16 @@ ui <- fluidPage(
       selectizeInput("selected_country", 
                      "Choose a country:", 
                      choices = unique(data$location), 
-                     options = list(placeholder = 'Select a country', onInitialize = I('function() { this.setValue(""); }'))),
+                     selected = "New Zealand",
+                     options = list(placeholder = 'Select a country')),
       checkboxInput("log_scale", "Logarithmic Scale", TRUE),
       br(),
-      downloadButton("downloadData", "Download Data")
+      downloadButton("downloadData", icon("download"), "Download Data"),
+      
+      # Explanation for the log scale option
+      helpText(HTML("Why Logarithmic Scale? <br> Logarithmic scale is useful when data has extreme spikes, e.g from 10,000s to millions. 
+                    It allows for a better visualization of the entire data range.")),
+      
     ),
     
     mainPanel(
@@ -99,5 +106,3 @@ server <- function(input, output) {
 
 # Run the Shiny app
 shinyApp(ui = ui, server = server)
-
-names(data)
